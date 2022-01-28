@@ -53,10 +53,12 @@ export default function App() {
         }
         setImages((images) => [...images, ...data.hits]);
         setStatus("resolved");
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: "smooth",
-        });
+        if (page != 1) {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+        }
       })
       .catch((error) => {
         setError(error);

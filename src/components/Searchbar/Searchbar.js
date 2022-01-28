@@ -1,5 +1,4 @@
-import React from "react";
-import { Component } from "react";
+import { useState } from "react";
 import {
   SearchHeader,
   SearchForm,
@@ -10,33 +9,29 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default class SearchBar extends Component {
-  state = {
-    request: "",
+export default function SearchBar({onSubmit}) {
+  const [request, setRequest] = useState("");
+
+  const handleNameChange = (event) => {
+    setRequest((event.currentTarget.value.toLowerCase()));
   };
 
-  handleNameChange = (event) => {
-    this.setState({ request: event.currentTarget.value.toLowerCase() });
-  };
-
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (this.state.request.trim() === "") {
+    if (request.trim() === "") {
       toast.error("Please enter your query!", {
         theme: "colored",
       });
       return;
     }
 
-    this.props.onSubmit(this.state.request);
-    this.setState({ request: "" });
+    onSubmit(request);
+    setRequest("");
   };
-
-  render() {
     return (
       <SearchHeader>
-        <SearchForm onSubmit={this.handleSubmit}>
+        <SearchForm onSubmit={handleSubmit}>
           <SearchButton type="submit">
             <SearchLabel>Search</SearchLabel>
           </SearchButton>
@@ -45,11 +40,10 @@ export default class SearchBar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.request}
-            onChange={this.handleNameChange}
+            value={request}
+            onChange={handleNameChange}
           />
         </SearchForm>
       </SearchHeader>
     );
-  }
 }

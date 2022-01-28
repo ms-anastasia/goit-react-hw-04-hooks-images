@@ -5,7 +5,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 const Spinner = () => {
     return (
-        <BeatLoader color= "#D7366E"  size={50} css={override}/>
+      <BeatLoader color= "#D7366E"  size={50} css={override}/>
     );
 };
 

@@ -53,6 +53,10 @@ export default function App() {
         }
         setImages((images) => [...images, ...data.hits]);
         setStatus("resolved");
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: "smooth",
+        });
       })
       .catch((error) => {
         setError(error);
@@ -78,7 +82,7 @@ export default function App() {
       {status === "resolved" && (
         <ImageGallery images={images} onClick={onImgClick} />
       )}
-      {images.length > 0 && images.length % 12 === 0 && (
+      {status === "resolved" && images.length > 0 && images.length % 12 === 0 && (
         <ButtonWrapper>
           <LoadMoreButton type="button" onClick={onLoadClick}>
             Load more

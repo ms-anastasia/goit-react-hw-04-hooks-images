@@ -26,6 +26,7 @@ export default function App() {
   const handleFormSubmit = (request) => {
     setRequest(request);
     setImages([]);
+    setPage(1);
   };
 
   const toggleModal = () => {
@@ -53,7 +54,7 @@ export default function App() {
         }
         setImages((images) => [...images, ...data.hits]);
         setStatus("resolved");
-        if (page != 1) {
+        if (page !== 1) {
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: "smooth",

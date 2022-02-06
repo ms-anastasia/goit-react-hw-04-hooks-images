@@ -26,7 +26,7 @@ export default function App() {
   const handleFormSubmit = (request) => {
     setRequest(request);
     setImages([]);
-    
+    setPage(1);
   };
 
   const toggleModal = () => {
